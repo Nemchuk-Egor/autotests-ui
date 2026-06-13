@@ -2,7 +2,8 @@ from playwright.sync_api import sync_playwright, expect
 
 with sync_playwright() as playwright:
     browser = playwright.chromium.launch(headless=False)
-    page = browser.new_page()
+    context = browser.new_context()
+    page = context.new_page()
 
     page.goto("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration")
 
@@ -29,3 +30,11 @@ with sync_playwright() as playwright:
     expect(dashboard_toolbar_title_text).to_be_visible()
     expect(dashboard_toolbar_title_text).to_have_text("Dashboard")
 
+    context.storage_state(path="browser-state.json")
+
+with sync_playwright() as playwright:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context(storage_state="browser-state.json")
+    page = context.new_page()
+
+    page.goto("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/dashboard")
