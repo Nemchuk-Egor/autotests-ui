@@ -33,3 +33,4 @@ def test_empty_courses_list(chromium_page_with_state: Page):
     expect(courses_empty_description_text).to_have_text(
         "Results from the load test pipeline will be displayed here"
     )
+ 
