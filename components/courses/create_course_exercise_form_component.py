@@ -1,4 +1,6 @@
-from components.base_component import BaseComponent, expect
+from playwright.sync_api import expect
+
+from components.base_component import BaseComponent
 
 
 class CreateCourseExerciseFormComponent(BaseComponent):
@@ -9,9 +11,15 @@ class CreateCourseExerciseFormComponent(BaseComponent):
         delete_button.click()
 
     def check_visible(self, index: int, title: str, description: str):
-        subtitle = self.page.get_by_test_id(f"create-course-exercise-{index}-box-toolbar-subtitle-text")
-        title_input = self.page.get_by_test_id(f"create-course-exercise-form-title-{index}-input")
-        description_input = self.page.get_by_test_id(f"create-course-exercise-form-description-{index}-input")
+        subtitle = self.page.get_by_test_id(
+            f"create-course-exercise-{index}-box-toolbar-subtitle-text"
+        )
+        title_input = self.page.get_by_test_id(
+            f"create-course-exercise-form-title-{index}-input"
+        )
+        description_input = self.page.get_by_test_id(
+            f"create-course-exercise-form-description-{index}-input"
+        )
 
         expect(subtitle).to_be_visible()
         expect(subtitle).to_have_text(f"#{index + 1} Exercise")
@@ -23,8 +31,12 @@ class CreateCourseExerciseFormComponent(BaseComponent):
         expect(description_input).to_have_value(description)
 
     def fill(self, index: int, title: str, description: str):
-        title_input = self.page.get_by_test_id(f"create-course-exercise-form-title-{index}-input")
-        description_input = self.page.get_by_test_id(f"create-course-exercise-form-description-{index}-input")
+        title_input = self.page.get_by_test_id(
+            f"create-course-exercise-form-title-{index}-input"
+        )
+        description_input = self.page.get_by_test_id(
+            f"create-course-exercise-form-description-{index}-input"
+        )
 
         title_input.fill(title)
         expect(title_input).to_have_value(title)
