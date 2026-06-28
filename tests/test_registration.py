@@ -1,4 +1,3 @@
-from playwright.sync_api import expect, Page
 import pytest
 
 from pages.dashboard_page import DashboardPage
