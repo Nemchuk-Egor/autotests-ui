@@ -3,6 +3,7 @@ from playwright.sync_api import Page
 from components.authentication.registration_form_component import (
     RegistrationFormComponent,
 )
+import re
 from elements.button import Button
 from elements.link import Link
 from elements.text import Text
@@ -27,10 +28,12 @@ class RegistrationPage(BasePage):
 
     def click_login_link(self):
         self.login_link.click()
+        self.check_current_url(re.compile(r".*/#/auth/login"))
 
     def click_registration_button(self):
         self.registration_button.check_visible()
         self.registration_button.click()
+        self.check_current_url(re.compile(r".*/#/dashboard"))
 
     def check_visible_user_again_exists_alert(self):
         self.user_again_exists_alert.check_visible()
