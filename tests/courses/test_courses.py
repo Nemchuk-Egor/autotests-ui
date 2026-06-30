@@ -1,12 +1,21 @@
 import pytest
-
+import allure
 from pages.courses.courses_list_page import CoursesListPage
 from pages.courses.create_course_page import CreateCoursePage
-
+from tools.allure.epics import AllureEpic
+from tools.allure.features import AllureFeature
+from tools.allure.stories import AllureStory
 
 @pytest.mark.courses
 @pytest.mark.regression
+@allure.epic(AllureEpic.LMS)
+@allure.feature(AllureFeature.COURSES)
+@allure.story(AllureStory.COURSES)
+@allure.parent_suite(AllureEpic.LMS)
+@allure.suite(AllureFeature.COURSES)
+@allure.sub_suite(AllureStory.COURSES)
 class TestCourses:
+    @allure.title("Check displaying of empty courses list")
     def test_empty_courses_list(self, courses_list_page: CoursesListPage):
         courses_list_page.visit(
             "https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses"
@@ -16,6 +25,7 @@ class TestCourses:
         courses_list_page.toolbar_view.check_visible()
         courses_list_page.check_visible_empty_view()
 
+    @allure.title("Create course")
     def test_create_course(
         self, courses_list_page: CoursesListPage, create_course_page: CreateCoursePage
     ):
@@ -53,8 +63,13 @@ class TestCourses:
             estimated_time="2 weeks",
         )
 
-    def test_edit_course(self, courses_list_page: CoursesListPage, create_course_page: CreateCoursePage):
-        create_course_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create")
+    @allure.title("Edit Course")
+    def test_edit_course(
+        self, courses_list_page: CoursesListPage, create_course_page: CreateCoursePage
+    ):
+        create_course_page.visit(
+            "https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create"
+        )
         create_course_page.create_course_form.fill(
             title="Playwright",
             estimated_time="2 weeks",
@@ -92,4 +107,3 @@ class TestCourses:
             min_score="100",
             estimated_time="now",
         )
-

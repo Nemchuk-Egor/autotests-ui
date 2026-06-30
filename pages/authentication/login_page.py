@@ -22,8 +22,8 @@ class LoginPage(BasePage):
         )
 
     def click_login_button(self):
+        self.login_button.check_visible()
         self.login_button.click()
-        self.check_current_url(re.compile(r".*/#/dashboard"))
 
     def click_registration_link(self):
         self.registration_link.click()

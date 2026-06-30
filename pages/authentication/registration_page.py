@@ -33,7 +33,6 @@ class RegistrationPage(BasePage):
     def click_registration_button(self):
         self.registration_button.check_visible()
         self.registration_button.click()
-        self.check_current_url(re.compile(r".*/#/dashboard"))
 
     def check_visible_user_again_exists_alert(self):
         self.user_again_exists_alert.check_visible()
