@@ -7,6 +7,7 @@ from tools.allure.epics import AllureEpic
 from tools.allure.features import AllureFeature
 from tools.allure.stories import AllureStory
 
+
 @pytest.mark.regression
 @pytest.mark.registration
 @allure.epic(AllureEpic.LMS)

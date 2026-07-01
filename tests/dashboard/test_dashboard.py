@@ -5,6 +5,7 @@ from tools.allure.epics import AllureEpic
 from tools.allure.features import AllureFeature
 from tools.allure.stories import AllureStory
 
+
 @pytest.mark.dashboard
 @pytest.mark.regression
 @allure.epic(AllureEpic.LMS)
