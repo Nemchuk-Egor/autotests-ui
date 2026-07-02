@@ -1,6 +1,6 @@
 from typing import Pattern
 
-import allure  # Импортируем allure
+import allure
 from playwright.sync_api import Page, expect
 
 
@@ -9,7 +9,7 @@ class BasePage:
         self.page = page
 
     def visit(self, url: str):
-        with allure.step(f'Opening the url "{url}"'):
+        with allure.step(f'Opening the url "{url.value}"'):
             self.page.goto(url, wait_until="networkidle")
 
     def reload(self):
